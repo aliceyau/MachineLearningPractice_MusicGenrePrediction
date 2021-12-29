@@ -1,0 +1,30 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+#Load Data
+music_data = pd.read_csv(r'music.csv')
+
+#creates a new data set/data frame without the column specified
+#This will be our input set
+X = music_data.drop(columns=['genre'])
+
+#This will be our output set
+y = music_data['genre']
+
+#split data set into two sets for training and testing. 20% for testing
+#randomly chooses data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
+
+#Create new instance of the class Decision Tree Classifier
+model = DecisionTreeClassifier()
+
+
+#train the model
+model.fit(X_train,y_train)
+#predict with test subset
+predictions = model.predict(X_test)
+print(predictions)
+#How to measure the accuracy of the model
+print(accuracy_score(y_test, predictions))
