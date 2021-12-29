@@ -23,8 +23,12 @@ model = DecisionTreeClassifier()
 
 #train the model
 model.fit(X_train,y_train)
+
 #predict with test subset
 predictions = model.predict(X_test)
+
 print(predictions)
-#How to measure the accuracy of the model
+
+
+#Measure the accuracy of the model
 print(accuracy_score(y_test, predictions))
